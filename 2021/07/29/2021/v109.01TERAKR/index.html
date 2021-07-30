@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文 : TERA 테라 | BLUEHOLE Update12为确保系统的稳定性，共鸣副本更新推迟至8月11日。我们会努力以更加顺畅的游戏环境和完美的面貌展现给大家">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021.07.28 补丁日志 (v109.01)  TERA KR2021 v109 翻译">
+<meta property="og:url" content="http://example.com/2021/07/29/2021/v109.01TERAKR/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原文 : TERA 테라 | BLUEHOLE Update12为确保系统的稳定性，共鸣副本更新推迟至8月11日。我们会努力以更加顺畅的游戏环境和完美的面貌展现给大家">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E5%B7%B4%E5%BE%B7%E6%8B%89%E5%85%A5%E5%8F%A3.png">
+<meta property="og:image" content="http://example.com/images/%E5%B7%B4%E5%BE%B7%E6%8B%89%E5%86%85%E9%83%A8.png">
+<meta property="og:image" content="http://example.com/images/%E5%B7%B4%E5%BE%B7%E6%8B%8901.png">
+<meta property="og:image" content="http://example.com/images/%E5%B7%B4%E5%BE%B7%E6%8B%8902.png">
+<meta property="og:image" content="http://example.com/images/Balderon01.png">
+<meta property="og:image" content="http://example.com/images/Balderon02.png">
+<meta property="og:image" content="http://example.com/images/%E6%96%B0%E5%A2%9E%E8%89%BE%E7%90%B3%E7%9E%B3%E5%AD%94.png">
+<meta property="article:published_time" content="2021-07-29T02:33:52.000Z">
+<meta property="article:modified_time" content="2021-07-30T02:35:33.972Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E5%B7%B4%E5%BE%B7%E6%8B%89%E5%85%A5%E5%8F%A3.png">
+
+<link rel="canonical" href="http://example.com/2021/07/29/2021/v109.01TERAKR/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2021.07.28 补丁日志 (v109.01)  TERA KR2021 v109 翻译 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/29/2021/v109.01TERAKR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2021.07.28 补丁日志 (v109.01)  TERA KR2021 v109 翻译
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-29 10:33:52" itemprop="dateCreated datePublished" datetime="2021-07-29T10:33:52+08:00">2021-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-30 10:35:33" itemprop="dateModified" datetime="2021-07-30T10:35:33+08:00">2021-07-30</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原文 : <a target="_blank" rel="noopener" href="https://playtera.co.kr/news/updates/492">TERA 테라 | BLUEHOLE</a></p>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">为确保系统的稳定性，共鸣副本更新推迟至8月11日。</span><br><span class="line">我们会努力以更加顺畅的游戏环境和完美的面貌展现给大家</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="1-开放新区域"><a href="#1-开放新区域" class="headerlink" title="1. 开放新区域"></a><strong>1.</strong> 开放新区域</h3><ul>
+<li>开放未探索的地区 - 巴德拉<ul>
+<li>巴德拉可以通过位于北部夏拉的新月村庄-遗忘村庄进入</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/%E5%B7%B4%E5%BE%B7%E6%8B%89%E5%85%A5%E5%8F%A3.png"></p>
+<p><img src="/images/%E5%B7%B4%E5%BE%B7%E6%8B%89%E5%86%85%E9%83%A8.png"></p>
+<ul>
+<li>巴德拉的活动等级设置为71级，推荐等级为70级<ul>
+<li>一个叫做Balderon的城镇位于巴德拉特别区域，在那里你可以开始新的成就，冒险和故事</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">巴德拉</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/images/%E5%B7%B4%E5%BE%B7%E6%8B%8901.png"></td>
+<td><img src="/images/%E5%B7%B4%E5%BE%B7%E6%8B%8902.png"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Balderon (pl.)</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/images/Balderon01.png"></td>
+<td><img src="/images/Balderon02.png"></td>
+</tr>
+</tbody></table>
+<h3 id="2-副本"><a href="#2-副本" class="headerlink" title="2. 副本"></a><strong>2.</strong> 副本</h3><ul>
+<li><p>重新开放副本 路克米亚幻梦 (5人副本)</p>
+<ul>
+<li>副本难度以及掉落</li>
+</ul>
+<table>
+    <tr align="center">
+        <th>副本名称</th>
+        <th>路克米亚幻梦</th>
+    </tr>
+    <tr align="center">
+        <td>入场限制</td>
+        <td>每日2次（VIP 4次）</td>
+    </tr>
+    <tr align="center">
+        <td>冒险代币消耗</td>
+        <td>210</td>
+    </tr>
+    <tr align="center">
+        <td>角色等级限制</td>
+        <td>70</td>
+  </tr>
+    <tr align="center">
+        <td>装备等级限制</td>
+        <td>504</td>
+    </tr>
+    <tr align="center">
+        <td rowspan="14">掉落</td>
+      <td>亚玛轮的遗物I/伊莎拉的圣物I兑换卷</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南装备箱子[稀有]</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南装备箱子[传说]</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南装备箱子[神话]</td>
+    </tr>
+    <tr align="center">
+        <td>震怒/贤明凯亚面具</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南属性转换卷轴</td>
+    </tr>
+    <tr align="center">
+        <td>凯亚面具/胸针/腰带属性转换卷轴</td>
+    </tr>
+    <tr align="center">
+        <td>海洋戒指精致石</td>
+    </tr>
+    <tr align="center">
+        <td>太阳/熔岩/冰河/寒气/闪电精髓</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南水晶石</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南的灰烬</td>
+    </tr>
+    <tr align="center">
+        <td>锻炼的证明</td>
+    </tr>
+    <tr align="center">
+        <td>挑战的证明</td>
+    </tr>
+    <tr align="center">
+        <td>强者的证明</td>
+    </tr>
+</table></li>
+</ul>
+<ul>
+<li>巴其温指令书奖励</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">巴其温指令书</th>
+<th align="center">奖励规则（每日16次）</th>
+<th align="center">追加奖励（每日1次）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">讨伐路克米亚幻梦</td>
+<td align="center">经验 : 100,000,000</td>
+<td align="center">马赫特南灰烬：3</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">金币 : 3,000</td>
+<td align="center">（随机）饰品属性调整石箱子：1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">巴其温声望：3,300</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">特性经验：1,518</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">龙鳞：1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">绿钛强化弹：75</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">AWAKE代币：9</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>添加了新的成就，把现有成就重新分类或添加到遗忘成就分类中。</p>
+</li>
+<li><p>重新开放副本 炽热的艾尔凯拉斯号（高阶）</p>
+<ul>
+<li>副本难度以及掉落</li>
+</ul>
+<table>
+    <tr align="center">
+        <th>副本名称</th>
+        <th>炽热的艾尔凯拉斯号（高阶）</th>
+    </tr>
+    <tr align="center">
+        <td>入场限制</td>
+        <td>每日2次（VIP 4次）</td>
+    </tr>
+    <tr align="center">
+        <td>冒险代币消耗</td>
+        <td>300</td>
+    </tr>
+    <tr align="center">
+        <td>角色等级限制</td>
+        <td>70</td>
+  </tr>
+    <tr align="center">
+        <td>装备等级限制</td>
+        <td>510</td>
+    </tr>
+    <tr align="center">
+        <td rowspan="14">掉落</td>
+      <td>亚玛轮的遗物II/伊莎拉的圣物II兑换卷</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南装备箱子[神话]</td>
+    </tr>
+    <tr align="center">
+        <td>首饰刻印IV(项链)</td>
+    </tr>
+    <tr align="center">
+        <td>贪婪的马赫特南属性转换卷轴</td>
+    </tr>
+    <tr align="center">
+        <td>贪婪的凯亚面具/胸针/腰带属性转换卷轴</td>
+    </tr>
+    <tr align="center">
+        <td>海洋戒指精致石</td>
+    </tr>
+    <tr align="center">
+        <td>火焰项链精致石</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南水晶石</td>
+    </tr>
+    <tr align="center">
+        <td>马赫特南的灰烬</td>
+    </tr>
+</table>
+
+<ul>
+<li>巴其温指令书</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">巴其温指令书</th>
+<th align="center">奖励规则（每日16次）</th>
+<th align="center">追加奖励（每日1次）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">讨伐炽热的艾尔凯拉斯号（高阶）</td>
+<td align="center">经验 : 100,000,000</td>
+<td align="center">马赫特南灰烬：4</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">金币 : 6,000</td>
+<td align="center">AWAKE代币：3</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">巴其温声望：100</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">特性经验：1,518</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">龙鳞：1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">绿钛强化弹：100</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">AWAKE代币：17</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>添加了新的成就，把现有成就重新分类或添加到遗忘成就分类中。</p>
+</li>
+<li><p>添加[试炼副本] 核心融合所</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">[试炼副本] 核心融合所</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">入场限制</td>
+<td align="center">每日2次（VIP 4次）</td>
+</tr>
+<tr>
+<td align="center">冒险代币消耗</td>
+<td align="center">400</td>
+</tr>
+<tr>
+<td align="center">角色等级限制</td>
+<td align="center">70</td>
+</tr>
+<tr>
+<td align="center">装备等级限制</td>
+<td align="center">504</td>
+</tr>
+</tbody></table>
+<ul>
+<li>可以获得传说圣物/遗物I兑换卷，技能锻炼经验，马赫特南属性转换卷轴，马赫特南的浑浊粉末，技能升级卷</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-物品和装备"><a href="#3-物品和装备" class="headerlink" title="3. 物品和装备"></a><strong>3.</strong> 物品和装备</h3><ul>
+<li><p>改进马赫南装备的一些独特选项的属性。</p>
+<table>
+<thead>
+<tr>
+<th align="center">部位</th>
+<th align="center">独特选项</th>
+<th align="center">变更日志</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">武器</td>
+<td align="center">魔力暴风</td>
+<td align="center">Before</td>
+<td align="left">增加2倍魔法消耗，增加技能伤害和治疗效果(4/5/6/7/8)%</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">增加<strong>1.5</strong>倍魔法消耗，增加技能伤害和治疗效果(4/5/6/7/8)%</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">沉重一击</td>
+<td align="center">Before</td>
+<td align="left">攻击速度减少10%，增加技能伤害和治疗效果(4/5/6/7/8)%</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">攻击速度减少10%，增加技能伤害和治疗效果(<strong>8/10/12/14/16</strong>)%</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">消灭标记</td>
+<td align="center">Before</td>
+<td align="left">攻击时有(20/40/60/80/100)%的几率给予目标消灭标识;这个效果叠加15次，减少目标HP的0.1%伤害。伤害上限1亿</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">攻击时(20/40/60/80/100)有%的几率给予目标消灭标识;此效果叠加15次，给予目标HP 0.1%的伤害。伤害上限<strong>2</strong>亿</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">勇气的赞歌</td>
+<td align="center">Before</td>
+<td align="left">增加自身和周围友方物理和魔法增幅(2/2.5/3/3.5/4)%，适用范围10m</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">增加自身和周围友方物理和魔法增幅(2/2.5/3/3.5/4)%，适用范围<strong>15</strong>m</td>
+</tr>
+<tr>
+<td align="center">盔甲</td>
+<td align="center">信赖的赞歌</td>
+<td align="center">Before</td>
+<td align="left">增加自身和周边友方物理抵抗增加(2/2.5/3/3.5/4)%，适用范围10m</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">增加自身和周边友方物理抵抗增加(2/2.5/3/3.5/4)%，适用范围<strong>15</strong>m</td>
+</tr>
+<tr>
+<td align="center">手套</td>
+<td align="center">馬赫特南的力量</td>
+<td align="center">Before</td>
+<td align="left">战斗开始后，每6秒增加力量1次(最多叠加10/20/30/40/50)</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">战斗开始后，每<strong>5</strong>秒增加力量1次(最多叠加10/20/30/40/50)</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">盲目的信念</td>
+<td align="center">Before</td>
+<td align="left">自身HP低于30%时，增加技能力量与恢复技能效果(6/7/8/9/10)%</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">自身HP低于<strong>60</strong>%时，增加技能力量和恢复技能效果(<strong>7/9/11/13/15</strong>)%</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">战场的鼓声</td>
+<td align="center">Before</td>
+<td align="left">增加自身和周边友方物理和魔法贯通(667/833/1000/1167/1335)适用范围10m</td>
+</tr>
+<tr>
+<td align="center">‘’</td>
+<td align="center">‘’</td>
+<td align="center">After</td>
+<td align="left">增加自身和周边友方物理和魔法贯通(667/833/1000/1167/1335)适用<strong>15</strong>米范围</td>
+</tr>
+<tr>
+<td align="center">鞋子</td>
+<td align="center">魔力之歌</td>
+<td align="center">Before</td>
+<td align="left">增加自身和周边友方魔法抵抗(2/2.5/3/3.5/4)%，作用范围10m</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">After</td>
+<td align="left">增加自身和周边友方的魔法抵抗(2/2.5/3/3.5/4)%，作用范围15m</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="4-DPS-记录器"><a href="#4-DPS-记录器" class="headerlink" title="4. DPS 记录器"></a><strong>4.</strong> DPS 记录器</h3><ul>
+<li>进程和内存使用情况得到改善。</li>
+<li>解决了战斗结束后记录器继续计算的问题</li>
+</ul>
+<h3 id="5-人物创建"><a href="#5-人物创建" class="headerlink" title="5. 人物创建"></a><strong>5.</strong> 人物创建</h3><ul>
+<li>新增了5种艾琳的瞳孔模型</li>
+</ul>
+<p><img src="/images/%E6%96%B0%E5%A2%9E%E8%89%BE%E7%90%B3%E7%9E%B3%E5%AD%94.png"></p>
+<h3 id="6-UI-和其它修正"><a href="#6-UI-和其它修正" class="headerlink" title="6. UI 和其它修正"></a><strong>6.</strong> UI 和其它修正</h3><ul>
+<li>修复了射击范围标识(图像)输出位置和实际射击范围不一样的问题。</li>
+<li>改善副本战斗时可能发生的断开、延迟现象</li>
+</ul>
+<h3 id="7-公会对战"><a href="#7-公会对战" class="headerlink" title="7. 公会对战"></a><strong>7.</strong> 公会对战</h3><ul>
+<li>增加公会塔的生命值</li>
+</ul>
+<h3 id="8-任务"><a href="#8-任务" class="headerlink" title="8. 任务"></a><strong>8.</strong> 任务</h3><ul>
+<li>删除一些不再使用的奖励和声望的每日/声望任务</li>
+</ul>
+<h3 id="9-其它服务"><a href="#9-其它服务" class="headerlink" title="9. 其它服务"></a><strong>9.</strong> 其它服务</h3><ul>
+<li><p>以下物品在Terr shop销售。 （kr独家）</p>
+</li>
+<li><p>增加了Tera通行证任务</p>
+<ul>
+<li>增加了新的TERA通行证任务，每日任务和重复任务</li>
+<li>重复任务:可以重复完成直到点数限制，每天重置</li>
+<li>每日任务:每日可完成一次，每日重置(不受点数限制影响)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bug-修复"><a href="#Bug-修复" class="headerlink" title="Bug 修复"></a>Bug 修复</h2><p>…</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/28/2021/PatchNotes/" rel="prev" title="补丁日志">
+      <i class="fa fa-chevron-left"></i> 补丁日志
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/29/2021/2021/" rel="next" title="2021">
+      2021 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update"><span class="nav-number">1.</span> <span class="nav-text">Update</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BC%80%E6%94%BE%E6%96%B0%E5%8C%BA%E5%9F%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1. 开放新区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%89%AF%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">2. 副本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%89%A9%E5%93%81%E5%92%8C%E8%A3%85%E5%A4%87"><span class="nav-number">1.3.</span> <span class="nav-text">3. 物品和装备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-DPS-%E8%AE%B0%E5%BD%95%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">4. DPS 记录器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BA%BA%E7%89%A9%E5%88%9B%E5%BB%BA"><span class="nav-number">1.5.</span> <span class="nav-text">5. 人物创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-UI-%E5%92%8C%E5%85%B6%E5%AE%83%E4%BF%AE%E6%AD%A3"><span class="nav-number">1.6.</span> <span class="nav-text">6. UI 和其它修正</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%85%AC%E4%BC%9A%E5%AF%B9%E6%88%98"><span class="nav-number">1.7.</span> <span class="nav-text">7. 公会对战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.8.</span> <span class="nav-text">8. 任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%85%B6%E5%AE%83%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.9.</span> <span class="nav-text">9. 其它服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bug-%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text">Bug 修复</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">3k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
