@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文：TERA 테라 | BLUEHOLE [贯穿公式改善]1234567改进后，穿透效果可以首先应用于怪物的基本抗性我们在之前改进了贯穿和无视抗性的应用方式，但发现实际上应用的方式与预期的不一样当前应用的方式是先应用通过异常状态的抗性增加&#x2F;减少效果，然后计算出抗性后再应用贯穿效果，最后再应用抗性无视效果但是我们想要的公式是在对象的基本抗性中首先适用贯穿效果，通过再计算异常状态的抗性增加&#x2F;减少效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tera-Fans">
+<meta property="og:url" content="http://example.com/2021/08/14/%E6%9B%B4%E6%96%B0%E9%A2%84%E5%91%8A/2021.8.25%E8%81%8C%E4%B8%9A%E5%B9%B3%E8%A1%A1/index.html">
+<meta property="og:site_name" content="Tera-Fans">
+<meta property="og:description" content="原文：TERA 테라 | BLUEHOLE [贯穿公式改善]1234567改进后，穿透效果可以首先应用于怪物的基本抗性我们在之前改进了贯穿和无视抗性的应用方式，但发现实际上应用的方式与预期的不一样当前应用的方式是先应用通过异常状态的抗性增加&#x2F;减少效果，然后计算出抗性后再应用贯穿效果，最后再应用抗性无视效果但是我们想要的公式是在对象的基本抗性中首先适用贯穿效果，通过再计算异常状态的抗性增加&#x2F;减少效果">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-14T06:48:52.000Z">
+<meta property="article:modified_time" content="2021-08-14T09:15:20.232Z">
+<meta property="article:author" content="佚名">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/08/14/%E6%9B%B4%E6%96%B0%E9%A2%84%E5%91%8A/2021.8.25%E8%81%8C%E4%B8%9A%E5%B9%B3%E8%A1%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Tera-Fans</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Tera-Fans</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生如逆旅,我亦是行人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/14/%E6%9B%B4%E6%96%B0%E9%A2%84%E5%91%8A/2021.8.25%E8%81%8C%E4%B8%9A%E5%B9%B3%E8%A1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="佚名">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tera-Fans">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-14 14:48:52 / 修改时间：17:15:20" itemprop="dateCreated datePublished" datetime="2021-08-14T14:48:52+08:00">2021-08-14</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/14/%E6%9B%B4%E6%96%B0%E9%A2%84%E5%91%8A/2021.8.25%E8%81%8C%E4%B8%9A%E5%B9%B3%E8%A1%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/14/%E6%9B%B4%E6%96%B0%E9%A2%84%E5%91%8A/2021.8.25%E8%81%8C%E4%B8%9A%E5%B9%B3%E8%A1%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原文：<a target="_blank" rel="noopener" href="https://playtera.co.kr/news/devnotes/541">TERA 테라 | BLUEHOLE</a></p>
+<h3 id="贯穿公式改善"><a href="#贯穿公式改善" class="headerlink" title="[贯穿公式改善]"></a>[贯穿公式改善]</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">改进后，穿透效果可以首先应用于怪物的基本抗性</span><br><span class="line">我们在之前改进了贯穿和无视抗性的应用方式，但发现实际上应用的方式与预期的不一样</span><br><span class="line">当前应用的方式是先应用通过异常状态的抗性增加/减少效果，然后计算出抗性后再应用贯穿效果，最后再应用抗性无视效果</span><br><span class="line">但是我们想要的公式是在对象的基本抗性中首先适用贯穿效果，通过再计算异常状态的抗性增加/减少效果和抗性无视效果</span><br><span class="line">所以我们修改了一下，这样就可以按照我们想要的公式工作了</span><br><span class="line">但由于怪物和玩家角色的结构差异，在PVP情况下，仅将装备的基础抗性和强化增加的效果计算为基础抗性，无法穿透通过装备选项和异常条件获得的额外抗性</span><br><span class="line">因为公式的修改和验证花费了很多时间，在我们想应用的时候已经有玩家在饰品使用了贯穿属性，所以我们希望纠正现有伤害公式计算问题，使改善的平衡得到应用</span><br></pre></td></tr></table></figure>
+
+<h3 id="坦克和补师"><a href="#坦克和补师" class="headerlink" title="[坦克和补师]"></a>[坦克和补师]</h3><table>
+<thead>
+<tr>
+<th align="center">职业</th>
+<th align="center">技能名称</th>
+<th align="center">当前</th>
+<th align="center">修改后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">枪骑士</td>
+<td align="center">粉碎防具</td>
+<td align="center">根据自身物理抵抗20%减少目标物理抵抗</td>
+<td align="center">根据自身物理抵抗<strong>10</strong>%减少目标物理抵抗和魔法抵抗</td>
+</tr>
+<tr>
+<td align="center">拳师</td>
+<td align="center">狂暴连打</td>
+<td align="center">根据自身物理抵抗10%减少目标物理抵抗</td>
+<td align="center">根据自身物理抵抗<strong>5</strong>%减少目标物理抵抗和魔法抵抗</td>
+</tr>
+<tr>
+<td align="center">祭司</td>
+<td align="center">连锁天罚</td>
+<td align="center">根据自身魔法抵抗20%减少目标魔法抵抗</td>
+<td align="center">根据自身魔法抵抗<strong>10</strong>%减少目标物理抵抗和魔法抵抗</td>
+</tr>
+<tr>
+<td align="center">元素</td>
+<td align="center">痛苦咒缚</td>
+<td align="center">根据自身魔法抵抗20%减少目标魔法抵抗</td>
+<td align="center">根据自身魔法抵抗<strong>10</strong>%减少目标物理抵抗和魔法抵抗</td>
+</tr>
+<tr>
+<td align="center">剑斗士</td>
+<td align="center">斗志一击</td>
+<td align="center">根据自身物理抵抗20%减少目标物理抵抗</td>
+<td align="center">根据自身物理抵抗<strong>10</strong>%减少目标物理抵抗和魔法抵抗</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在当前应用方式的情况下，坦克可以降低目标物理抗性，补师可以降低目标魔法抗性</span><br><span class="line">我们想通过这样的设计使坦克和补师的成长能够对怪物产生强烈的影响</span><br><span class="line">또한, 딜러와 비교했을 때 솔로 플레이에서 저항 감소 효과를 통해 부족함이 없는 성능을 낼 수 있도록 보완하려는 목적이 있었습니다.</span><br><span class="line">다만, 하위~중위권에서는 탱커의 강화 단계가 비교적 높아 물리 딜러의 성능이 높게 나타나고,</span><br><span class="line">상위권 이상에서는 힐러의 극대화된 마법 저항 옵션 파밍을 통해 마법 딜러의 성능이 높게 나타나는 현상이 발생하였습니다.</span><br><span class="line">따라서, &#x27;자신의 능력치에 비례하여 대상의 저항을 감소시킨다&#x27;는 컨셉은 유지하되 어느 구간에서도 동등하게 동작할 수 있도록 탱커와 힐러의 저항 감소 효과를 절반씩 적용되도록 구조를 개선하고자 합니다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="飞剑士"><a href="#飞剑士" class="headerlink" title="[飞剑士]"></a>[飞剑士]</h3><table>
+<thead>
+<tr>
+<th align="center">技能名称</th>
+<th align="center">当前</th>
+<th align="center">修改后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">暗黑鞭</td>
+<td align="center">最大重叠次数16次</td>
+<td align="center"><strong>最大重叠8次</strong>，每层增加的魔法抵抗无视不变</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">이전 스킬 편의성 개선을 통해 제공되었던 어두운 기운 효과의 지속 시간 증가로 인해 상시 유지가 비교적 수월하게 가능해지면서 기본 패시브 스킬을 포함하여 전체 증폭의 8%를 마법 저항 무시 능력치로 상시 전환할 수 있게 되었고 이는 저희가 의도했던 성능보다 너무 높은 효율을 지니게 되었습니다.</span><br><span class="line"></span><br><span class="line">이에 편의성 부분을 다시 되돌리는 것 보다는, 어두운 기운 효과의 최대 중첩 수를 제한하여 마법 저항 무시 능력치의 최대 전환율을 감소시키고자 합니다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="剑斗士"><a href="#剑斗士" class="headerlink" title="[剑斗士]"></a>[剑斗士]</h3><table>
+<thead>
+<tr>
+<th align="center">技能名称</th>
+<th align="center">当前</th>
+<th align="center">修改后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">必杀意志</td>
+<td align="center">CD2min</td>
+<td align="center">CD<strong>1min30s</strong></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">疾风劈击增伤10%</td>
+<td align="center">疾风劈击增伤<strong>15%</strong></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">无伤乱舞-劈击增伤10%</td>
+<td align="center">无伤乱舞-劈击增伤<strong>15%</strong></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">旋风击增伤10%</td>
+<td align="center">旋风击增伤<strong>15%</strong></td>
+</tr>
+<tr>
+<td align="center">钢铁决心</td>
+<td align="center">增加物抗20％</td>
+<td align="center">增加物抗<strong>25％</strong></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">필살의 의지 스킬은, 다른 딜러의 필살기 버프 시간의 재사용 시간인 71초 수준으로 변경하고자 합니다.</span><br><span class="line"></span><br><span class="line">기존의 재사용 시간은 약 66.5초 수준이었습니다. 필살의 의지는 짧은 재사용 시간으로 인해 탱커와 힐러의 버프 스킬과 시너지를 내면서 활용할 수 없이 단독으로 사용해야만 했습니다.</span><br><span class="line"></span><br><span class="line">계속 기다리기에는 애매한 재사용 시간을 갖고 있고, 사용 시 대부분의 스킬 재사용 시간이 초기화 되는 효과를 갖고 있기에, 기다리지 않고 사용해야만 했습니다.</span><br><span class="line"></span><br><span class="line">유일하게 권술사의 태풍연타, 열심히 신의 숨결을 사용한 사제의 심판의 주문에 맞춰서 사용이 가능했으나, 다른 딜러와는 또 호흡이 맞지 않는 문제가 있었습니다.</span><br><span class="line"></span><br><span class="line">따라서, 이번 조정을 통해 다른 딜러 클래스와 유사한 시간 영역으로 변경하고자 합니다.</span><br><span class="line"></span><br><span class="line">단, 필살의 의지 II 지속 시간동안 강화되는 스킬의 추가 피해량 및 스킬 위력 증가량을 소폭 증가시켰습니다.</span><br><span class="line"></span><br><span class="line">또한, 관통 공식의 정상화가 함께 진행되기 때문에, 검투사에게 지급되었던 치명상 패시브 스킬의 물리 저항 무시 효과를 최대로 활용하실 수 있는 환경이 갖춰질 것으로 기대합니다.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[강철의 결의] 검투사의 경우, 저항 감소 효과가 중요해진 만큼 창기사 패시브에 준하는 성능을 낼 수 있도록, 강철의 결의 상태에서 물리 저항 증가량을 조정합니다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="元素"><a href="#元素" class="headerlink" title="[元素]"></a><strong>[元素]</strong></h3><table>
+<thead>
+<tr>
+<th align="center">技能名称</th>
+<th align="center">当前</th>
+<th align="center">修改后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">召唤精灵-闪电精灵</td>
+<td align="center">最少0.05~最多3%</td>
+<td align="center"><strong>最少2.05~最多5%</strong></td>
+</tr>
+<tr>
+<td align="center">破坏精灵</td>
+<td align="center">CD 5min</td>
+<td align="center">CD <strong>4min</strong>,伤害<strong>减少20%</strong></td>
+</tr>
+<tr>
+<td align="center">元素王</td>
+<td align="center">CD 10min</td>
+<td align="center">CD <strong>4min10s</strong></td>
+</tr>
+<tr>
+<td align="center">灵气召唤 - 庇护</td>
+<td align="center">‘’‘</td>
+<td align="center">当存在守护精灵盾的时候，使用技能产生的盾牌效果取消。新增3s全队抗跌倒+僵直免疫效果</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">힐러의 재사용 시간 통일화 작업을 진행하고자 합니다.</span><br><span class="line"></span><br><span class="line">재사용 시간 감소 버프 효과는 그동안 두 힐러가 가진 고유한 컨셉의 영역이었으나, 재사용 시간 감소의 영향으로 파티원의 스킬 활용 빈도나 조작감이 달라지지 않도록 통일하고자 합니다.</span><br><span class="line"></span><br><span class="line">현재 물리 및 마법 능력치가 기존 능력치를 압도하게 되면서 일반 치명타 위력 능력치의 영향력이 감소한 만큼, 힐러의 버프 효과도 추후 밸런스 패치를 통해 전체적으로 개선하고자 합니다.</span><br><span class="line"></span><br><span class="line">다만, 이번 패치에서는 공통으로 적용할 부분에 대해 사전 적용하고자 하며, 정령사가 사제와 비교하였을 때 다소 부족한 부분에 대해 보완하고자 합니다.</span><br><span class="line"></span><br><span class="line">파괴의 정령 스킬은 기존 49.5초의 재사용 시간을 갖고 있었기 때문에 다른 스킬들과 연계하기 어려운 시간 영역이었습니다.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">따라서, 재사용 시간을 소폭 감소시켜 전반적으로 38.8초 정도에 사용할 수 있도록 조정하였고, 80초 영역에서 2회 사용할 수 있을 것으로 기대합니다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="魔拳"><a href="#魔拳" class="headerlink" title="[魔拳]"></a><strong>[魔拳</strong>]</h3><table>
+<thead>
+<tr>
+<th align="center">技能名称</th>
+<th align="center">当前</th>
+<th align="center">修改后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">台风连打</td>
+<td align="center">CD 5min</td>
+<td align="center">CD <strong>2min40s</strong></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">攻击速度和力量最多叠加5次，每次提升8%</td>
+<td align="center"><strong>技能命中即提高攻击速度和力量30%</strong></td>
+</tr>
+<tr>
+<td align="center">回旋飞踢</td>
+<td align="center">‘’</td>
+<td align="center"><strong>移除  击中时减少[台风连打]的冷却时间10秒</strong></td>
+</tr>
+<tr>
+<td align="center">愤怒乱打</td>
+<td align="center">物理系数 250%</td>
+<td align="center">物理系数 <strong>170%</strong></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">威力 4160</td>
+<td align="center">威力 <strong>8863</strong></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">CD 3min</td>
+<td align="center">CD <strong>1min40s</strong></td>
+</tr>
+<tr>
+<td align="center">收到怪物攻击的伤害</td>
+<td align="center">‘’</td>
+<td align="center"><strong>小幅度降低</strong></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">권술사의 실력 편차에 따라 파티 전체의 퍼포먼스가 영향을 받는 부분에 대해 조정하고자 합니다.</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">태풍연타 스킬은 적중 시 마다 공격속도와 힘 효과가 점진적으로 증가하는 형태로 제공해왔습니다.</span><br><span class="line"></span><br><span class="line">항상 레이너식 흑맥주와 함께 태풍연타를 사용해왔던 수호자분들에게 레드 와인이 지급된 만큼 적정 공격속도와 힘 효과를 모든 구간에서 높은 수준으로 제공하여 레이너식 흑맥주 없이도, 다양한 스킬 연계가 가능하도록 조정하고자 합니다.</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">기존의 날아차기는 태풍연타 재사용 시간 감소 효과가 있어 유틸기로서 활용도가 낮아지고, 주로 딜사이클로만 활용되고 있으며, 완벽한 방어 성공률에 따라 파일럿의 실력을 증명하는 요소가 되면서 허들로 작용해 왔습니다.</span><br><span class="line"></span><br><span class="line">앞으로는 권술사의 부족한 회피기를 보완할 수 있는 빠른 유틸성 이동 스킬로 활용하실 수 있도록, &#x27;적중 시 특정 스킬 강화&#x27;와 같은 다른 효과를 추가하지 않을 예정이며, 날아차기를 유틸성 이동 스킬로 활용하여 더욱 스타일리쉬한 권술사 플레이가 되었으면 합니다.</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">그동안 사용성이 부족했던 분노의 난타 스킬의 활용성을 높이고자 합니다.</span><br><span class="line"></span><br><span class="line">80초 영역에서 2회 사용을 목표로 41.7초 정도의 재사용 시간으로 변경하였으며, 태풍연타 스킬을 활용하여 재사용 시간을 소폭 감소시켜 사용할 수 있습니다.</span><br><span class="line"></span><br><span class="line">너무 높게 제공되었던 물리 계수는 대폭 감소되었으나, 스킬 위력 부분을 크게 향상시켜 강력한 스킬로 변화시켰습니다.</span><br><span class="line"></span><br><span class="line">분노의 난타 스킬은 치명타 확률이 높지 않기 때문에, 치명타 유발 능력치를 획득하더라도, 의미를 가질 수 있을 것으로 기대합니다.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">창기사와 비교하여 몬스터에게 받는 피해량 계수가 소폭 높았던 부분을 동일하게 변경하였습니다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="魔工"><a href="#魔工" class="headerlink" title="[魔工]"></a>[魔工]</h3><table>
+<thead>
+<tr>
+<th align="center">技能名称</th>
+<th align="center">当前</th>
+<th align="center">修改后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">发射秘传导弹</td>
+<td align="center">魔法系数 130%</td>
+<td align="center">魔法系数 <strong>150%</strong></td>
+</tr>
+<tr>
+<td align="center">发射速射炮</td>
+<td align="center">威力 192</td>
+<td align="center">威力 <strong>220</strong></td>
+</tr>
+<tr>
+<td align="center">神秘光束连射</td>
+<td align="center">威力 258</td>
+<td align="center">威力 <strong>310</strong></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">물리 및 마법 능력치가 높게 제공됨에 따라, 주력 스킬인 비전 미사일 발사 스킬의 마법 계수가 다소 낮았던 부분을 상향하여 적정 피해를 줄 수 있도록 개선합니다.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">또한, 속사포 발사, 아케인 빔 연사 스킬의 기본 스킬 위력을 향상하여 아케인 에너지가 모였을 때 속사포 및 아케인 빔 연사 스킬을 주력으로 사용할 수 있도록 강화하고자 합니다.</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/13/%E5%85%B6%E4%BB%96%E6%94%BB%E7%95%A5/%E7%A9%BA%E5%B2%9B%E7%9B%97%E5%A2%93%E8%80%85/" rel="prev" title="空岛盗墓者">
+      <i class="fa fa-chevron-left"></i> 空岛盗墓者
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AF%E7%A9%BF%E5%85%AC%E5%BC%8F%E6%94%B9%E5%96%84"><span class="nav-number">1.</span> <span class="nav-text">[贯穿公式改善]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%A6%E5%85%8B%E5%92%8C%E8%A1%A5%E5%B8%88"><span class="nav-number">2.</span> <span class="nav-text">[坦克和补师]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A3%9E%E5%89%91%E5%A3%AB"><span class="nav-number">3.</span> <span class="nav-text">[飞剑士]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%96%97%E5%A3%AB"><span class="nav-number">4.</span> <span class="nav-text">[剑斗士]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%B4%A0"><span class="nav-number">5.</span> <span class="nav-text">[元素]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AD%94%E6%8B%B3"><span class="nav-number">6.</span> <span class="nav-text">[魔拳]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AD%94%E5%B7%A5"><span class="nav-number">7.</span> <span class="nav-text">[魔工]</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="佚名"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">佚名</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">佚名</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">24k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">44 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/images/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'HwS8GSNriQaTXxuhXS11Ju6S-gzGzoHsz',
+      appKey     : 'ltIfj3KgekzxKg0xlhkMVepz',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":210,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
