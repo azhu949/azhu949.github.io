@@ -35,7 +35,7 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
+    isHome : false,
     isPost : false,
     lang   : 'zh-CN'
   };
@@ -208,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-14 14:48:52 / 修改时间：18:40:05" itemprop="dateCreated datePublished" datetime="2021-08-14T14:48:52+08:00">2021-08-14</time>
+              <time title="创建时间：2021-08-14 14:48:52" itemprop="dateCreated datePublished" datetime="2021-08-14T14:48:52+08:00">2021-08-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-16 16:37:52" itemprop="dateModified" datetime="2021-08-16T16:37:52+08:00">2021-08-16</time>
+              </span>
 
           
   
@@ -295,6 +301,10 @@
 <td align="center">根据自身物理抵抗<strong>10</strong>%减少目标物理抵抗和魔法抵抗</td>
 </tr>
 </tbody></table>
+<p><strong>TIPS:</strong></p>
+<ul>
+<li><strong>各职业破防也有可能是根据自身物理抵抗和魔法抵抗减少目标抗性</strong></li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在当前应用方式的情况下，坦克可以降低目标物理抗性，补师可以降低目标魔法抗性</span><br><span class="line">我们想通过这样的设计使坦克和补师的成长能够对怪物产生强烈的影响</span><br><span class="line">또한, 딜러와 비교했을 때 솔로 플레이에서 저항 감소 효과를 통해 부족함이 없는 성능을 낼 수 있도록 보완하려는 목적이 있었습니다.</span><br><span class="line">다만, 하위~중위권에서는 탱커의 강화 단계가 비교적 높아 물리 딜러의 성능이 높게 나타나고,</span><br><span class="line">상위권 이상에서는 힐러의 극대화된 마법 저항 옵션 파밍을 통해 마법 딜러의 성능이 높게 나타나는 현상이 발생하였습니다.</span><br><span class="line">따라서, &#x27;자신의 능력치에 비례하여 대상의 저항을 감소시킨다&#x27;는 컨셉은 유지하되 어느 구간에서도 동등하게 동작할 수 있도록 탱커와 힐러의 저항 감소 효과를 절반씩 적용되도록 구조를 개선하고자 합니다.</span><br></pre></td></tr></table></figure>
 
 <h3 id="飞剑士"><a href="#飞剑士" class="headerlink" title="[飞剑士]"></a>[飞剑士]</h3><table>
@@ -324,7 +334,7 @@
 <tbody><tr>
 <td align="center">必杀意志</td>
 <td align="center">CD2min</td>
-<td align="center">CD<strong>1min30s</strong></td>
+<td align="center">CD<strong>1min30s</strong>，移除必杀意志cd文章</td>
 </tr>
 <tr>
 <td align="center"></td>
